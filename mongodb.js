@@ -6,10 +6,8 @@ module.exports = {
   connect: function(callback){
     MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/", function(err, database) {
       if(err) throw err;
-      if(process.env.MONGODB_URI)
-        _db = database
-      else 
-        _db = database.db('datadotnewamerica');
+
+      _db = database.db(process.env.DB || 'datadotnewamerica');
 
       callback(_db);
     });
